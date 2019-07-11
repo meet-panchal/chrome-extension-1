@@ -1,0 +1,16 @@
+{
+    "name": "Customer Management",
+    "version": "1.0",
+    "description": "Customer Management Extension",
+    "options_page": "html/options.html",
+    "permissions": ["webRequest", "activeTab", "tabs", "storage"],
+    "background": {
+        "scripts": ["libs/jquery-3.4.1.js", "js/background.js"]
+    },
+    "content_scripts": [{
+        "matches": ["http://*/*"],
+        "js": ["libs/jquery-3.4.1.js", "libs/popper.min.js", "libs/bootstrap.min.js", "libs/jquery.dataTables.min.js"],
+        "run_at": "document_end"
+    }],
+    "manifest_version": 2
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/options.css">
+    <!-- <script src="https://kit.fontawesome.com/cdf1312101.js"></script> -->
+</head>
+
+<body>
+    <div class="page-header" id="cust_header">
+        <h1>CUSTOMER MANAGEMENT</h1>
+    </div>
+    <br>
+    <div class="container">
+        <button type="button" class="btn btn-success" id="new_customer" data-toggle="modal" data-target="#myModal">Add New Customer</button>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Customer Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="customer_form">
+                            <div class="form-group">
+                                <label for="Customer Name">Customer Name</label>
+                                <input type="text" class="form-control" id="customer_name" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="Customer Name">Date</label>
+                                <input type="text" class="form-control" id="customer_date" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Customer City</label>
+                                <select class="form-control" id="customer_city">
+                                    <option>Vadodara</option>
+                                    <option>Ahemedabad</option>
+                                    <option>Surat</option>
+                                    <option>Anand</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Customer Type</label>
+                                <select class="form-control" id="customer_type">
+                                    <option>Regular</option>
+                                    <option>Less Frequent</option>
+                                    <option>Seldom</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close_button">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="save_button">Save!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table" id="mytable">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Customer ID</th>
+                    <th scope="col">Pending Amount</th>
+                    <th scope="col">Total Amount</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="table-html">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="../libs/jquery-3.4.1.js"></script>
+<script src="../libs/jquery-ui.js"></script>
+<script src="../libs/bootstrap.min.js"></script>
+<script src="../libs/jquery.dataTables.min.js"></script>
+<script src="../libs/popper.min.js"></script>
+<script src="../libs/cdf1312101.js"></script>
+<script src="../js/options.js" defer></script>
+
+</html
