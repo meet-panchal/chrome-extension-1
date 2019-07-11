@@ -1,13 +1,25 @@
+var isEmpty = 1;
 var customer_details_arr = []
+var uiSettings = {
+    json_data: { "customer_details": customer_details_arr },
+    isEmpty: false
+};
 let table = document.querySelector("#table-html");
+//var customer_details_arr = []
 var products = []
+$('#mytable').DataTable();
 
 var json_data = {
     "customer_details": customer_details_arr
 }
-var myObj_serialized = JSON.stringify(json_data);
-localStorage.setItem("json_data", myObj_serialized)
-$('#mytable').DataTable();
+var storeIsEmpty = localStorage["isEmpty"];
+if (storeIsEmpty != isEmpty) {
+    localStorage["isEmpty"] = isEmpty;
+    localStorage['uiSettings'] = JSON.stringify(uiSettings);
+}
+uiSettings = JSON.parse(localStorage["uiSettings"]);
+
+
 $(function() {
     $("#customer_date").datepicker();
 });
@@ -47,8 +59,8 @@ $("#save_button").click(function() {
     var pending_amount = 0
     var total_amount = 0
 
-    var localdata = JSON.parse(localStorage.getItem("json_data"))
-    var useful_data = localdata.customer_details
+    //var localdata = JSON.parse(localStorage.getItem("json_data"))
+    var useful_data = uiSettings.json_data.customer_details
 
     function uuidv4() {
         return 'Eliteyxx4xxy'.replace(/[xy]/g, function(c) {
@@ -71,9 +83,9 @@ $("#save_button").click(function() {
         })
     }
     $("#customer_form").trigger("reset");
-    var myObj_serialized = JSON.stringify(json_data.customer_details)
-    localStorage.setItem("json_data", myObj_serialized)
-    var localdata = JSON.parse(localStorage.getItem("json_data"))
-    var useful_data1 = localdata.customer_details
-    generateTable(table, useful_data1);
+    uiSettings.json_data.customer_details = useful_data;
+    //myObj_serialized = JSON.stringify(json_data);
+    localStorage["uiSettings"] = JSON.stringify(uiSettings);
+    useful_data = uiSettings.json_data.customer_details
+    generateTable(table, useful_data);
 })
