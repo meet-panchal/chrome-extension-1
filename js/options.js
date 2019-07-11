@@ -83,6 +83,8 @@ $("#save_button").click(function() {
             "total_amount": total_amount,
             "products": products,
         })
+    }else{
+        alert("Enter all the details!!")
     }
     $("#customer_form").trigger("reset");
     uiSettings.json_data.customer_details = useful_data;
