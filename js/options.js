@@ -133,6 +133,17 @@ $("#save_button").click(function() {
             }
         }
     })
+
+    $(".fa-user-edit").click(function() {
+        for (let element of useful_data) {
+            for (key in element) {
+                if ((element[key]) == $(this).data('id')) {
+                    var newURL = chrome.runtime.getURL("html/products.html" + "?" + $(this).data('id'));
+                    chrome.tabs.create({ url: newURL });
+                }
+            }
+        }
+    })
 })
 $(document).ready(function() {
     var useful_data = uiSettings.json_data.customer_details
@@ -178,6 +189,16 @@ $(document).ready(function() {
                         document.location.reload(true)
                     })
 
+                }
+            }
+        }
+    })
+    $(".fa-user-edit").click(function() {
+        for (let element of useful_data) {
+            for (key in element) {
+                if ((element[key]) == $(this).data('id')) {
+                    var newURL = chrome.runtime.getURL("html/products.html" + "?" + $(this).data('id'));
+                    chrome.tabs.create({ url: newURL });
                 }
             }
         }

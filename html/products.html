@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Management - Product Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/product.css">
+</head>
+
+<body>
+    <div class="page-header" id="cust_header">
+        <h1>CUSTOMER MANAGEMENT - Product Details</h1>
+    </div>
+    <br>
+    <div class="container">
+        <div class="d-flex flex-row bd-highlight mb-3 justify-content-between">
+            <div class="p-2 bd-highlight view">
+                <h3>Customer Name</h3>
+                <h5 id="customer_name"></h5>
+            </div>
+            <div class="p-2 bd-highlight">
+                <h3>Customer ID</h3>
+                <h5 id="customer_id"></h5>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success" id="new_product" data-toggle="modal" data-target="#product_detail_modal">Add New Products</button>
+        <div class="modal fade" id="product_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Customer Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="customer_form">
+                            <div class="form-group">
+                                <label for="Customer Name">Customer Name</label>
+                                <input type="text" class="form-control" id="product_customer_name" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="Customer Name">Product Price</label>
+                                <input type="text" class="form-control" id="product_price" placeholder="$XX.XX">
+                            </div>
+                            <div class="form-group">
+                                <label for="Customer Name">Date</label>
+                                <input type="text" class="form-control" id="product_date" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="Customer Name">Amount Paid by Customer</label>
+                                <input type="text" class="form-control" id="customer_name" placeholder="John Doe">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="product_close_button">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="product_save_button">Save!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table" id="product_table">
+            <thead>
+                <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Date of Purchase</th>
+                    <th scope="col">Product Price</th>
+                    <th scope="col">Amount Paid</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="table-html">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="../libs/jquery-3.4.1.js"></script>
+<script src="../libs/jquery-ui.js"></script>
+<script src="../libs/bootstrap.min.js"></script>
+<script src="../libs/jquery.dataTables.min.js"></script>
+<script src="../libs/popper.min.js"></script>
+<script src="../libs/cdf1312101.js"></script>
+<script src="../js/product.js" defer></script>
+
+</html

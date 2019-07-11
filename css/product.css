@@ -1,0 +1,15 @@
+#cust_header h1 {
+    text-align: center;
+    padding: 0.5% 0;
+    background-color: indianred
+}
+
+#new_product {
+    float: right;
+    margin: 2% 0;
+}
+
+#customer_id,
+#customer_name {
+    color: crimson
+}
