@@ -63,6 +63,51 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Customer Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="customer_form">
+                            <div class="form-group">
+                                <label for="Customer Name">Customer Name</label>
+                                <input type="text" class="form-control" id="customer_name_edit" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="Customer Name">Date</label>
+                                <input type="text" class="form-control" id="customer_date_edit" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Customer City</label>
+                                <select class="form-control" id="customer_city_edit">
+                                    <option>Vadodara</option>
+                                    <option>Ahemedabad</option>
+                                    <option>Surat</option>
+                                    <option>Anand</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Customer Type</label>
+                                <select class="form-control" id="customer_type_edit">
+                                    <option>Regular</option>
+                                    <option>Less Frequent</option>
+                                    <option>Seldom</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close_button_edit">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="save_button_edit">Save!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <table class="table" id="mytable">
             <thead>
                 <tr>
