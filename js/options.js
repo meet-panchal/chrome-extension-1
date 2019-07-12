@@ -61,7 +61,7 @@ $("#save_button").click(function() {
     var pending_amount = 0
     var total_amount = 0
 
-    //var localdata = JSON.parse(localStorage.getItem("json_data"))
+    //Getting Data from local storage
     var useful_data = uiSettings.json_data.customer_details
 
     function uuidv4() {
@@ -83,13 +83,16 @@ $("#save_button").click(function() {
             "total_amount": total_amount,
             "products": products,
         })
-    }else{
+    } else {
         alert("Enter all the details!!")
     }
     $("#customer_form").trigger("reset");
+    //
     uiSettings.json_data.customer_details = useful_data;
     //myObj_serialized = JSON.stringify(json_data);
+    //Setting Data to local storage
     localStorage["uiSettings"] = JSON.stringify(uiSettings);
+    //Getting useful data
     useful_data = uiSettings.json_data.customer_details
     generateTable(table, useful_data);
     $(".fa-trash").click(function() {

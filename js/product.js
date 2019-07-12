@@ -1,6 +1,7 @@
 var url = window.location.search;
 url = url.replace("?", '');
 $('#product_table').DataTable();
+let table = document.querySelector("#product_table_body");
 $(function() {
     $("#product_date").datepicker();
 });
@@ -11,6 +12,8 @@ var uiSettings = {
 };
 var customer_details_arr = []
 var products = []
+var total_pending_amount = 0
+var total_product_amount = 0
 
 var json_data = {
     "customer_details": customer_details_arr
@@ -33,47 +36,137 @@ for (let element of useful_data) {
 $("#product_close_button").click(function() {
     $("#product_form").trigger("reset");
 });
+
 function generateTable(table, data) {
-    $('#table-html').html('');
+    $('#product_table_body').html('');
     var tableHtml = '';
     for (let i = 0; i < data.length; i++) {
         var element = data[i];
         tableHtml += `<tr>
-            <td>${element.customer_name}</td>
-            <td>${element.customer_date}</td>
-            <td>${element.customer_city}</td>
-            <td>${element.customer_type}</td>
-            <td>${element.customer_id}</td>
+            <td>${element.product_name}</td>
+            <td>${element.product_date}</td>
+            <td>${element.product_price}</td>
+            <td>${element.amount_paid}</td>
             <td>${element.pending_amount}</td>
-            <td>${element.total_amount}</td>
-            <td><i class='far fa-eye' data-id ="${element.customer_id}"></i>
-            <i class='fas fa-user-edit' data-id ="${element.customer_id}"></i>
-            <i class='fas fa-trash' data-id ="${element.customer_id}"></i>
+            <td><i class='far fa-eye'></i>
+            <i class='fas fa-user-edit'></i>
+            <i class='fas fa-trash'></i>
             </td>
             </tr>`
 
     }
-    $('#table-html').html(tableHtml);
+    $('#product_table_body').html(tableHtml);
 }
-$("#product_save_button").click(function(){
+$("#product_save_button").click(function() {
     var product_name = $("#product_name").val()
-    var product_price = parseInt($("#product_price").val(),10)
+    var product_price = parseInt($("#product_price").val(), 10)
     var product_date = $("#product_date").val()
-    var amount_paid = parseInt($("#amount_paid").val(),10)
-    for (let element of useful_data) {
+    var amount_paid = parseInt($("#amount_paid").val(), 10)
+    for (var element of useful_data) {
         for (key in element) {
             if ((element[key]) == url && product_price > amount_paid) {
                 element.products.push({
                     "product_name": product_name,
-                    "product_price" : product_price,
-                    "product_date" : product_date,
-                    "amount_paid" : amount_paid,
-                    "pending_amount" : product_price-amount_paid
+                    "product_price": product_price,
+                    "product_date": product_date,
+                    "amount_paid": amount_paid,
+                    "pending_amount": product_price - amount_paid
                 })
-            }else{
-                alert("Paid amount can't be greater than Product Price")
+                uiSettings.json_data.customer_details = useful_data;
+                localStorage["uiSettings"] = JSON.stringify(uiSettings);
+                var index = useful_data.indexOf(element)
+                var product_data = uiSettings.json_data.customer_details[index].products
             }
         }
-        console.log(element.products)
     }
+    generateTable(table, product_data)
+    for (let price of product_data) {
+        for (key in price) {
+            if (key == "pending_amount") {
+                total_pending_amount += price[key]
+            }
+        }
+    }
+    for (var element of useful_data) {
+        for (key in element) {
+            if ((element[key]) == url) {
+                element.pending_amount = total_pending_amount
+                uiSettings.json_data.customer_details = useful_data;
+                localStorage["uiSettings"] = JSON.stringify(uiSettings);
+                var index = useful_data.indexOf(element)
+                var product_data = uiSettings.json_data.customer_details[index].products
+            }
+        }
+    }
+    for (let price of product_data) {
+        for (key in price) {
+            if (key == "product_price") {
+                total_product_amount += price[key]
+            }
+        }
+    }
+    for (var element of useful_data) {
+        for (key in element) {
+            if ((element[key]) == url) {
+                element.total_amount = total_product_amount
+                uiSettings.json_data.customer_details = useful_data;
+                localStorage["uiSettings"] = JSON.stringify(uiSettings);
+                var index = useful_data.indexOf(element)
+                var product_data = uiSettings.json_data.customer_details[index].products
+            }
+        }
+    }
+    document.location.reload(true)
+})
+
+$(document).ready(function() {
+    uiSettings = JSON.parse(localStorage["uiSettings"]);
+    var useful_data = uiSettings.json_data.customer_details
+    for (var element of useful_data) {
+        for (key in element) {
+            if ((element[key]) == url) {
+                uiSettings.json_data.customer_details = useful_data;
+                localStorage["uiSettings"] = JSON.stringify(uiSettings);
+                var index = useful_data.indexOf(element)
+                var product_data = uiSettings.json_data.customer_details[index].products
+            }
+        }
+    }
+    for (let price of product_data) {
+        for (key in price) {
+            if (key == "pending_amount") {
+                total_pending_amount += price[key]
+            }
+        }
+    }
+    for (var element of useful_data) {
+        for (key in element) {
+            if ((element[key]) == url) {
+                element.pending_amount = total_pending_amount
+                uiSettings.json_data.customer_details = useful_data;
+                localStorage["uiSettings"] = JSON.stringify(uiSettings);
+                var index = useful_data.indexOf(element)
+                var product_data = uiSettings.json_data.customer_details[index].products
+            }
+        }
+    }
+    for (let price of product_data) {
+        for (key in price) {
+            if (key == "product_price") {
+                total_product_amount += price[key]
+            }
+        }
+    }
+    for (var element of useful_data) {
+        for (key in element) {
+            if ((element[key]) == url) {
+                element.total_amount = total_product_amount
+                uiSettings.json_data.customer_details = useful_data;
+                localStorage["uiSettings"] = JSON.stringify(uiSettings);
+                var index = useful_data.indexOf(element)
+                var product_data = uiSettings.json_data.customer_details[index].products
+            }
+        }
+    }
+    generateTable(table, product_data)
 })
