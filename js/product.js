@@ -48,10 +48,6 @@ function generateTable(table, data) {
             <td>${element.product_price}</td>
             <td>${element.amount_paid}</td>
             <td>${element.pending_amount}</td>
-            <td><i class='far fa-eye'></i>
-            <i class='fas fa-user-edit'></i>
-            <i class='fas fa-trash'></i>
-            </td>
             </tr>`
 
     }
@@ -62,61 +58,65 @@ $("#product_save_button").click(function() {
     var product_price = parseInt($("#product_price").val(), 10)
     var product_date = $("#product_date").val()
     var amount_paid = parseInt($("#amount_paid").val(), 10)
-    for (var element of useful_data) {
-        for (key in element) {
-            if ((element[key]) == url && product_price > amount_paid) {
-                element.products.push({
-                    "product_name": product_name,
-                    "product_price": product_price,
-                    "product_date": product_date,
-                    "amount_paid": amount_paid,
-                    "pending_amount": product_price - amount_paid
-                })
-                uiSettings.json_data.customer_details = useful_data;
-                localStorage["uiSettings"] = JSON.stringify(uiSettings);
-                var index = useful_data.indexOf(element)
-                var product_data = uiSettings.json_data.customer_details[index].products
+    if (product_name == "" || product_price == "" || product_date == "" || amount_paid == "") {
+        alert("Fill all the details")
+    } else {
+        for (var element of useful_data) {
+            for (key in element) {
+                if ((element[key]) == url && product_price >= amount_paid) {
+                    element.products.push({
+                        "product_name": product_name,
+                        "product_price": product_price,
+                        "product_date": product_date,
+                        "amount_paid": amount_paid,
+                        "pending_amount": product_price - amount_paid
+                    })
+                    uiSettings.json_data.customer_details = useful_data;
+                    localStorage["uiSettings"] = JSON.stringify(uiSettings);
+                    var index = useful_data.indexOf(element)
+                    var product_data = uiSettings.json_data.customer_details[index].products
+                }
             }
         }
-    }
-    generateTable(table, product_data)
-    for (let price of product_data) {
-        for (key in price) {
-            if (key == "pending_amount") {
-                total_pending_amount += price[key]
+        generateTable(table, product_data)
+        for (let price of product_data) {
+            for (key in price) {
+                if (key == "pending_amount") {
+                    total_pending_amount += price[key]
+                }
             }
         }
-    }
-    for (var element of useful_data) {
-        for (key in element) {
-            if ((element[key]) == url) {
-                element.pending_amount = total_pending_amount
-                uiSettings.json_data.customer_details = useful_data;
-                localStorage["uiSettings"] = JSON.stringify(uiSettings);
-                var index = useful_data.indexOf(element)
-                var product_data = uiSettings.json_data.customer_details[index].products
+        for (var element of useful_data) {
+            for (key in element) {
+                if ((element[key]) == url) {
+                    element.pending_amount = total_pending_amount
+                    uiSettings.json_data.customer_details = useful_data;
+                    localStorage["uiSettings"] = JSON.stringify(uiSettings);
+                    var index = useful_data.indexOf(element)
+                    var product_data = uiSettings.json_data.customer_details[index].products
+                }
             }
         }
-    }
-    for (let price of product_data) {
-        for (key in price) {
-            if (key == "product_price") {
-                total_product_amount += price[key]
+        for (let price of product_data) {
+            for (key in price) {
+                if (key == "product_price") {
+                    total_product_amount += price[key]
+                }
             }
         }
-    }
-    for (var element of useful_data) {
-        for (key in element) {
-            if ((element[key]) == url) {
-                element.total_amount = total_product_amount
-                uiSettings.json_data.customer_details = useful_data;
-                localStorage["uiSettings"] = JSON.stringify(uiSettings);
-                var index = useful_data.indexOf(element)
-                var product_data = uiSettings.json_data.customer_details[index].products
+        for (var element of useful_data) {
+            for (key in element) {
+                if ((element[key]) == url) {
+                    element.total_amount = total_product_amount
+                    uiSettings.json_data.customer_details = useful_data;
+                    localStorage["uiSettings"] = JSON.stringify(uiSettings);
+                    var index = useful_data.indexOf(element)
+                    var product_data = uiSettings.json_data.customer_details[index].products
+                }
             }
         }
+        document.location.reload(true)
     }
-    document.location.reload(true)
 })
 
 $(document).ready(function() {
@@ -170,3 +170,8 @@ $(document).ready(function() {
     }
     generateTable(table, product_data)
 })
+
+// <td><i class='far fa-eye'></i>
+// <i class='fas fa-user-edit'></i>
+// <i class='fas fa-trash'></i>
+// </td>

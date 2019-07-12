@@ -6,7 +6,6 @@ var uiSettings = {
 };
 let table = document.querySelector("#table-html");
 var products = []
-$('#mytable').DataTable();
 
 var json_data = {
     "customer_details": customer_details_arr
@@ -31,6 +30,7 @@ $("#close_button").click(function() {
 });
 
 function generateTable(table, data) {
+    $('#mytable').DataTable().destroy();
     $('#table-html').html('');
     var tableHtml = '';
     for (let i = 0; i < data.length; i++) {
@@ -51,6 +51,9 @@ function generateTable(table, data) {
 
     }
     $('#table-html').html(tableHtml);
+    $('#mytable').DataTable({
+        "autoWidth": true
+    });
 }
 
 $("#save_button").click(function() {
